@@ -29,8 +29,9 @@ const DATA = [
 
 let playerList = [];
 
-async function getPlayers() {
-    getDocs(collection(db, 'Jugadores')).then((playersSnapshot) => {
+async function getPlayers(db) {
+    let playerList = [];
+    await getDocs(collection(db, 'Jugadores')).then((playersSnapshot) => {
         playerList = playersSnapshot.docs.map(doc => doc.data());
     });
     console.log(playerList);
@@ -39,17 +40,18 @@ async function getPlayers() {
 export function ListadoJugadores({
     navigation,
 }) {
+    getPlayers(db);
     return (
         <SafeAreaView style={styles.container}>
             <FlatList
-                data={ getPlayers() }
+                data={ playerList }
                 renderItem={({ item }) => (
                     <Jugador
                         navigation={navigation}
-                        imgUrl={item.imgUrl}
-                        title={item.title}
-                        position={item.position}
-                        score={item.score}
+                        imgUrl={item.img}
+                        title={item.nombre}
+                        position={item.posicion}
+                        score={item.puntos}
                     />
                 )}
                 keyExtractor={item => item.id}
