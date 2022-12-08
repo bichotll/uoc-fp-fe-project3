@@ -1,0 +1,9 @@
+const INICIO = 'INICIO';
+const DETALLE_JUGADOR = 'DETALLE_JUGADOR';
+const VIDEO_JUGADOR = 'VIDEO_JUGADOR';
+
+export const ROUTES = {
+    INICIO,
+    DETALLE_JUGADOR,
+    VIDEO_JUGADOR,
+};

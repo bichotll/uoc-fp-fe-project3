@@ -3,13 +3,35 @@ import { StyleSheet, Text, View } from 'react-native';
 import { DetalleJugador } from './src/pages/DetalleJugador';
 import { Inicio } from './src/pages/Inicio';
 import { VideoJugador } from './src/pages/VideoJugador';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { ROUTES } from './src/router/routes';
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Inicio />
-      <DetalleJugador />
-      <VideoJugador />
+      <NavigationContainer>
+
+        <Stack.Navigator
+          initialRouteName={ROUTES.DETALLE_JUGADOR}
+        >
+          <Stack.Screen
+            name={ROUTES.INICIO}
+            component={Inicio}
+          />
+          <Stack.Screen
+            name={ROUTES.DETALLE_JUGADOR}
+            component={DetalleJugador}
+          />
+          <Stack.Screen
+            name={ROUTES.VIDEO_JUGADOR}
+            component={VideoJugador}
+          />
+        </Stack.Navigator>
+
+      </NavigationContainer>
       <StatusBar style="auto" />
     </View>
   );

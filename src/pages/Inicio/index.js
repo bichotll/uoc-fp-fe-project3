@@ -3,13 +3,14 @@ import { Button } from 'react-native-web';
 import { AppBar } from '../../ui/AppBar';
 import { Select } from './Select';
 
-export function Inicio() {
+export function Inicio({ navigation }) {
     return (
         <View style={styles.container}>
             <AppBar
                 title="Listado equipo"
                 isBackButtonShown={false}
                 isHomeButtonShown={false}
+                navigation={navigation}
             />
             <Select />
             <View>
