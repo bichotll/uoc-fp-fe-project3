@@ -1,17 +1,15 @@
 import { StyleSheet, Text, View } from 'react-native';
 import { Button } from 'react-native-web';
 import { AppBar } from '../../ui/AppBar';
-import { Select } from './Select';
 
-export function Inicio() {
+export function VideoJugador() {
     return (
         <View style={styles.container}>
             <AppBar
-                title="Listado equipo"
-                isBackButtonShown={false}
-                isHomeButtonShown={false}
+                title="Video jugador"
+                isBackButtonShown
+                isHomeButtonShown
             />
-            <Select />
             <View>
                 <Text>...</Text>
             </View>

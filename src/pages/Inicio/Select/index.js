@@ -2,7 +2,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { Button } from 'react-native-web';
 import { mainBackgroundColor } from '../../../theme';
 
-export function Listado() {
+export function Select() {
     return (
         <View style={styles.container}>
             <Text style={styles.text}>Seleccionar...</Text>
