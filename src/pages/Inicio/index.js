@@ -1,6 +1,7 @@
-import { StyleSheet, Text, View } from 'react-native';
-import { Button } from 'react-native-web';
+import { StyleSheet, Text, View, FlatList } from 'react-native';
 import { AppBar } from '../../ui/AppBar';
+import { ListadoJugadores } from './ListadoJugadores';
+import { Jugador } from './ListadoJugadores/Jugador';
 import { Select } from './Select';
 
 export function Inicio({ navigation }) {
@@ -14,7 +15,9 @@ export function Inicio({ navigation }) {
             />
             <Select />
             <View>
-                <Text>...</Text>
+                <ListadoJugadores
+                    navigation={navigation}
+                />
             </View>
         </View>
     )
@@ -23,7 +26,6 @@ export function Inicio({ navigation }) {
 const styles = StyleSheet.create({
     container: {
         width: '100%',
-        // height: '200px',
         backgroundColor: '#fff',
     },
 });
