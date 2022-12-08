@@ -1,6 +1,12 @@
-import { StyleSheet, Text, View } from 'react-native';
-import { Button } from 'react-native-web';
+import { Image, StyleSheet, Text, View } from 'react-native';
 import { AppBar } from '../../ui/AppBar';
+
+const DATA = {
+    img: 'https://ia802906.us.archive.org/33/items/ChannelLogos/4music.png',
+    name: 'First Item',
+    location: 'Rome, Italy',
+    email: 'trew@ytreg.com',
+}
 
 export function DetalleJugador({
     navigation,
@@ -13,8 +19,41 @@ export function DetalleJugador({
                 isHomeButtonShown
                 navigation={navigation}
             />
+
             <View>
-                <Text>...</Text>
+                <Image
+                    style={styles.img}
+                    source={{
+                        uri: DATA.img,
+                    }}
+                />
+            </View>
+
+            <View>
+                <Text
+                    style={styles.textFieldTitle}
+                >
+                    {'NAME: '}
+                </Text>
+                <Text>{DATA.name}</Text>
+            </View>
+
+            <View>
+                <Text
+                    style={styles.textFieldTitle}
+                >
+                    {'LOCATION: '}
+                </Text>
+                <Text>{DATA.location}</Text>
+            </View>
+
+            <View>
+                <Text
+                    style={styles.textFieldTitle}
+                >
+                    {'EMAIL: '}
+                </Text>
+                <Text>{DATA.email}</Text>
             </View>
         </View>
     )
@@ -25,5 +64,13 @@ const styles = StyleSheet.create({
         width: '100%',
         // height: '200px',
         backgroundColor: '#fff',
+    },
+    img: {
+        margin: 10,
+        width: '100%',
+        height: '200px',
+    },
+    textFieldTitle: {
+        fontWeight: 'bold',
     },
 });
