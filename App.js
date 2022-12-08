@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { DetalleJugador } from './src/pages/DetalleJugador';
 import { Inicio } from './src/pages/Inicio';
-import { VideoJugador } from './src/pages/VideoJugador';
+import { JugadorCarousel } from './src/pages/CarouselJugador';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { ROUTES } from './src/router/routes';
@@ -15,7 +15,7 @@ export default function App() {
       <NavigationContainer>
 
         <Stack.Navigator
-          initialRouteName={ROUTES.INICIO}
+          initialRouteName={ROUTES.CAROUSEL_JUGADOR}
         >
           <Stack.Screen
             name={ROUTES.INICIO}
@@ -26,8 +26,8 @@ export default function App() {
             component={DetalleJugador}
           />
           <Stack.Screen
-            name={ROUTES.VIDEO_JUGADOR}
-            component={VideoJugador}
+            name={ROUTES.CAROUSEL_JUGADOR}
+            component={JugadorCarousel}
           />
         </Stack.Navigator>
 
