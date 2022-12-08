@@ -1,5 +1,7 @@
 import { SafeAreaView, View, FlatList, StyleSheet, Text, StatusBar } from 'react-native';
 import { Jugador } from './Jugador';
+import { db } from '../../../config';
+import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
 
 const DATA = [
     {
@@ -25,13 +27,22 @@ const DATA = [
     },
 ];
 
+let playerList = [];
+
+async function getPlayers() {
+    getDocs(collection(db, 'Jugadores')).then((playersSnapshot) => {
+        playerList = playersSnapshot.docs.map(doc => doc.data());
+    });
+    console.log(playerList);
+}
+
 export function ListadoJugadores({
     navigation,
 }) {
     return (
         <SafeAreaView style={styles.container}>
             <FlatList
-                data={DATA}
+                data={ getPlayers() }
                 renderItem={({ item }) => (
                     <Jugador
                         navigation={navigation}
