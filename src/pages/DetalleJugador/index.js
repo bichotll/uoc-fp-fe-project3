@@ -1,4 +1,5 @@
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Button, Image, StyleSheet, Text, View } from 'react-native';
+import { ROUTES } from '../../router/routes';
 import { AppBar } from '../../ui/AppBar';
 
 const DATA = {
@@ -18,6 +19,11 @@ export function DetalleJugador({
                 isBackButtonShown
                 isHomeButtonShown
                 navigation={navigation}
+            />
+
+            <Button
+                title="Ver multimedia >"
+                onPress={() => navigation.navigate(ROUTES.VIDEO_JUGADOR)}
             />
 
             <View>
