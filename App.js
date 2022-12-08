@@ -15,7 +15,7 @@ export default function App() {
       <NavigationContainer>
 
         <Stack.Navigator
-          initialRouteName={ROUTES.DETALLE_JUGADOR}
+          initialRouteName={ROUTES.INICIO}
         >
           <Stack.Screen
             name={ROUTES.INICIO}
@@ -39,9 +39,5 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
-    // backgroundColor: '#fff',
-    // alignItems: 'center',
-    // justifyContent: 'center',
   },
 });

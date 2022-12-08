@@ -1,11 +1,22 @@
+import { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { Button } from 'react-native-web';
+import { Picker } from '@react-native-picker/picker';
 import { mainBackgroundColor } from '../../../theme';
 
 export function Select() {
+    const [selectedTeam, setSelectedTeam] = useState();
+
     return (
         <View style={styles.container}>
-            <Text style={styles.text}>Seleccionar...</Text>
+            <Picker
+                selectedValue={selectedTeam}
+                onValueChange={(itemValue, itemIndex) =>
+                    setSelectedTeam(itemValue)
+                }
+            >
+                <Picker.Item label="Java" value="java" />
+                <Picker.Item label="JavaScript" value="js" />
+            </Picker>
         </View>
     )
 }
