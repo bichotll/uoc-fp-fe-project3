@@ -23,7 +23,7 @@ export function DetalleJugador({
 
             <Button
                 title="Ver multimedia >"
-                onPress={() => navigation.navigate(ROUTES.VIDEO_JUGADOR)}
+                onPress={() => navigation.navigate(ROUTES.CAROUSEL_JUGADOR)}
             />
 
             <View>
