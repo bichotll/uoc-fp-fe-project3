@@ -15,13 +15,6 @@ export function Inicio({ navigation }) {
             />
             <Select />
             <View>
-                <Jugador
-                    navigation={navigation}
-                    imgUrl='https://ia802906.us.archive.org/33/items/ChannelLogos/4music.png'
-                    title='Lionel Messi'
-                    position='Forward'
-                    score='10'
-                />
                 <ListadoJugadores
                     navigation={navigation}
                 />
