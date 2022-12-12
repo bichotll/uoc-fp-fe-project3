@@ -4,8 +4,6 @@ import { db } from '../../../config';
 import { collection, getDocs } from 'firebase/firestore/lite';
 import { useEffect, useState } from 'react';
 
-
-
 async function getPlayers(db) {
     const playerDocs = await getDocs(collection(db, 'Jugadores'));
     return playerDocs.docs.map(doc => doc.data());
@@ -20,7 +18,6 @@ export function ListadoJugadores({
     useEffect(() => {
         getPlayers(db).then((playerList) =>{
             setPlayers(playerList);
-            console.log(playerList);
         });
     }, []);
 
@@ -31,13 +28,10 @@ export function ListadoJugadores({
                 renderItem={({ item }) => (
                     <Jugador
                         navigation={navigation}
-                        imgUrl={item.img}
-                        title={item.nombre}
-                        position={item.posicion}
-                        score={item.puntos}
+                        data={item}
                     />
                 )}
-                keyExtractor={item => item._id}
+                keyExtractor={item => item.nombre}
             />
         </SafeAreaView>
     )

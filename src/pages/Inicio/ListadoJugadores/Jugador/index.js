@@ -3,14 +3,11 @@ import { ROUTES } from '../../../../router/routes';
 
 export function Jugador({
     navigation,
-    imgUrl,
-    title,
-    position,
-    score,
+    data
 }) {
     return (
         <TouchableOpacity
-            onPress={() => navigation.navigate(ROUTES.DETALLE_JUGADOR)}
+            onPress={() => navigation.navigate(ROUTES.DETALLE_JUGADOR, {...data})}
         >
             <View
                 style={styles.container}
@@ -19,19 +16,19 @@ export function Jugador({
                     <Image
                         style={styles.img}
                         source={{
-                            uri: imgUrl
+                            uri: data.img
                         }}
                     />
                     <View>
                         <Text
                             style={styles.title}
                         >
-                            {title}
+                            {data.nombre}
                         </Text>
-                        <Text>{position}</Text>
+                        <Text>{data.posicion}</Text>
                     </View>
                 </View>
-                <Text>{score}</Text>
+                <Text>{data.score}</Text>
             </View>
         </TouchableOpacity>
     )

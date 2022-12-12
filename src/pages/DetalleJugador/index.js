@@ -1,17 +1,16 @@
+import { useState, useEffect } from 'react';
 import { Button, Image, StyleSheet, Text, View } from 'react-native';
 import { ROUTES } from '../../router/routes';
 import { AppBar } from '../../ui/AppBar';
 
-const DATA = {
-    img: 'https://ia802906.us.archive.org/33/items/ChannelLogos/4music.png',
-    name: 'First Item',
-    location: 'Rome, Italy',
-    email: 'trew@ytreg.com',
-}
-
 export function DetalleJugador({
     navigation,
+    route
 }) {
+   
+    const data = route.params;
+    console.log(route.params);  
+
     return (
         <View style={styles.container}>
             <AppBar
@@ -30,7 +29,7 @@ export function DetalleJugador({
                 <Image
                     style={styles.img}
                     source={{
-                        uri: DATA.img,
+                        uri: data.img
                     }}
                 />
             </View>
@@ -39,27 +38,63 @@ export function DetalleJugador({
                 <Text
                     style={styles.textFieldTitle}
                 >
-                    {'NAME: '}
+                    {'Nombre: '}
                 </Text>
-                <Text>{DATA.name}</Text>
+                <Text
+                    style={styles.textFieldBody}
+                >{data.nombre}</Text>
             </View>
 
             <View>
                 <Text
                     style={styles.textFieldTitle}
                 >
-                    {'LOCATION: '}
+                    {'Estatura: '}
                 </Text>
-                <Text>{DATA.location}</Text>
+                <Text
+                    style={styles.textFieldBody}
+                >{data.altura} cm</Text>
             </View>
 
             <View>
                 <Text
                     style={styles.textFieldTitle}
                 >
-                    {'EMAIL: '}
+                    {'Posición: '}
                 </Text>
-                <Text>{DATA.email}</Text>
+                <Text
+                    style={styles.textFieldBody}
+                >{data.posicion}</Text>
+            </View>
+            <View>
+                <Text
+                    style={styles.textFieldTitle}
+                >
+                    {'Edad: '}
+                </Text>
+                <Text
+                    style={styles.textFieldBody}
+                >{data.edad}</Text>
+            </View>
+            <View>
+                <Text
+                    style={styles.textFieldTitle}
+                >
+                    {'Puntos: '}
+                </Text>
+                <Text
+                    style={styles.textFieldBody}
+                >{data.puntos}</Text>
+            </View>
+            <View>
+                <Text
+                    style={styles.textFieldTitle}
+                >
+                    {'Descripción: '}
+                </Text>
+                <Text
+                    style={styles.textFieldBody}
+                >{data.descripcion}</Text>
             </View>
         </View>
     )
@@ -78,5 +113,10 @@ const styles = StyleSheet.create({
     },
     textFieldTitle: {
         fontWeight: 'bold',
+        paddingLeft: '5%',
+        marginBottom: '1%'
+    },
+    textFieldBody: {
+        paddingLeft: '10%'
     },
 });

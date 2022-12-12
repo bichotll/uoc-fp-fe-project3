@@ -15,7 +15,7 @@ export default function App() {
       <NavigationContainer>
 
         <Stack.Navigator
-          initialRouteName={ROUTES.CAROUSEL_JUGADOR}
+          initialRouteName={ROUTES.INICIO}
         >
           <Stack.Screen
             name={ROUTES.INICIO}
