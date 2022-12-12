@@ -2,23 +2,32 @@ import { SafeAreaView, View, FlatList, StyleSheet, Text, StatusBar } from 'react
 import { Jugador } from './Jugador';
 import { db } from '../../../config';
 import { collection, getDocs } from 'firebase/firestore/lite';
+import { useEffect, useState } from 'react';
+
+
+
+async function getPlayers(db) {
+    const playerDocs = await getDocs(collection(db, 'Jugadores'));
+    return playerDocs.docs.map(doc => doc.data());
+}
 
 export function ListadoJugadores({
-    navigation
-}) {
+    navigation,
     
-    async function getJugadores(db){
-        await getDocs(collection(db, 'Jugadores')).then((playersSnapshot) => {
-            return playersSnapshot.docs.map(doc => doc.data());
+}) {
+    const [players, setPlayers] = useState([]);
+
+    useEffect(() => {
+        getPlayers(db).then((playerList) =>{
+            setPlayers(playerList);
+            console.log(playerList);
         });
-    }
-    const playerList = getJugadores(db);
-    console.log(db);
-    console.log(playerList);
+    }, []);
+
     return (
         <SafeAreaView style={styles.container}>
             <FlatList
-                data={ playerList }
+                data={ players }
                 renderItem={({ item }) => (
                     <Jugador
                         navigation={navigation}
@@ -28,7 +37,7 @@ export function ListadoJugadores({
                         score={item.puntos}
                     />
                 )}
-                keyExtractor={item => item.id}
+                keyExtractor={item => item._id}
             />
         </SafeAreaView>
     )
