@@ -1,50 +1,33 @@
 import { SafeAreaView, View, FlatList, StyleSheet, Text, StatusBar } from 'react-native';
 import { Jugador } from './Jugador';
 import { db } from '../../../config';
-import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
+import { collection, getDocs } from 'firebase/firestore/lite';
+import { useEffect, useState } from 'react';
 
-const DATA = [
-    {
-        id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-        imgUrl: 'https://ia802906.us.archive.org/33/items/ChannelLogos/4music.png',
-        title: 'First Item',
-        position: 'Wqwe',
-        score: '456',
-    },
-    {
-        id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-        imgUrl: 'https://ia802906.us.archive.org/33/items/ChannelLogos/4music.png',
-        title: 'Second Item',
-        position: 'Drwe',
-        score: '789',
-    },
-    {
-        id: '58694a0f-3da1-471f-bd96-145571e29d72',
-        imgUrl: 'https://ia802906.us.archive.org/33/items/ChannelLogos/4music.png',
-        title: 'Third Item',
-        position: 'Cfewr',
-        score: '0',
-    },
-];
 
-let playerList = [];
 
 async function getPlayers(db) {
-    let playerList = [];
-    await getDocs(collection(db, 'Jugadores')).then((playersSnapshot) => {
-        playerList = playersSnapshot.docs.map(doc => doc.data());
-    });
-    console.log(playerList);
+    const playerDocs = await getDocs(collection(db, 'Jugadores'));
+    return playerDocs.docs.map(doc => doc.data());
 }
 
 export function ListadoJugadores({
     navigation,
+    
 }) {
-    getPlayers(db);
+    const [players, setPlayers] = useState([]);
+
+    useEffect(() => {
+        getPlayers(db).then((playerList) =>{
+            setPlayers(playerList);
+            console.log(playerList);
+        });
+    }, []);
+
     return (
         <SafeAreaView style={styles.container}>
             <FlatList
-                data={ playerList }
+                data={ players }
                 renderItem={({ item }) => (
                     <Jugador
                         navigation={navigation}
@@ -54,7 +37,7 @@ export function ListadoJugadores({
                         score={item.puntos}
                     />
                 )}
-                keyExtractor={item => item.id}
+                keyExtractor={item => item._id}
             />
         </SafeAreaView>
     )
