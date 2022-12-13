@@ -2,17 +2,13 @@ import React from 'react';
 import { Image, StyleSheet, Text, View, Button } from 'react-native';
 import { AppBar } from '../../ui/AppBar';
 
-const DATA = [
-    'https://archive.org/services/img/NBAShowtimeNBAOnNBC.cover',
-    'https://archive.org/services/img/NBAHangtime.cover',
-    'https://archive.org/services/img/NBAJam99.cover',
-]
 
 export function JugadorCarousel({
     navigation,
+    route
 }) {
     const [currentImageIndex, setCurrentImageIndex] = React.useState(0);
-
+    const data = route.params;
     return (
         <View style={styles.container}>
             <AppBar
@@ -25,19 +21,19 @@ export function JugadorCarousel({
                 <Image
                     style={styles.img}
                     source={{
-                        uri: DATA[currentImageIndex],
+                        uri: route.params[currentImageIndex],
                     }}
                 />
             </View>
             <View style={styles.controlsContainer}>
                 <Button
                     title="< Anterior"
-                    onPress={() => setCurrentImageIndex(currentImageIndex - 1 < 0 ? DATA.length - 1 : currentImageIndex - 1)}
+                    onPress={() => setCurrentImageIndex(currentImageIndex - 1 < 0 ? data.length - 1 : currentImageIndex - 1)}
                 />
-                <Text>{`${currentImageIndex + 1}/${DATA.length}`}</Text>
+                <Text>{`${currentImageIndex + 1}/${data.length}`}</Text>
                 <Button
                     title="Siguiente >"
-                    onPress={() => setCurrentImageIndex((currentImageIndex + 1) % DATA.length)}
+                    onPress={() => setCurrentImageIndex((currentImageIndex + 1) % data.length)}
                 />
             </View>
         </View>
